@@ -1,0 +1,23 @@
+{
+  "alert": {
+    "confirm": "OK",
+    "defaultTitle": "Notice"
+  },
+  "confirm": {
+    "title": "Confirm",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
+  "custom": {
+    "title": "Custom Modal",
+    "description": "You can freely compose any content here.",
+    "button": "Custom Button"
+  },
+  "example": {
+    "complete": "Operation completed.",
+    "deleteConfirm": "Are you sure you want to delete?",
+    "openAlert": "Open Alert Modal",
+    "openConfirm": "Open Confirm Modal",
+    "openCustom": "Open Custom Modal"
+  }
+} 
