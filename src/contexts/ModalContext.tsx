@@ -1,50 +1,12 @@
 "use client"
 
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { Modal } from '@/components/ui/Modal';
-
-export type ModalSize = 'small' | 'medium' | 'large';
-export type ModalType = 'alert' | 'confirm' | 'custom';
-
-interface ModalConfig {
-  id: number;
-  isOpen: boolean;
-  title?: string;
-  content: ReactNode;
-  size: ModalSize;
-  type: ModalType;
-  onConfirm?: () => void;
-  onCancel?: () => void;
-}
-
-interface AlertOptions {
-  title?: string;
-  content: ReactNode;
-  size?: ModalSize;
-  onConfirm?: () => void;
-}
-
-interface ConfirmOptions {
-  title?: string;
-  content: ReactNode;
-  size?: ModalSize;
-  onConfirm?: () => void;
-  onCancel?: () => void;
-}
-
-interface CustomOptions {
-  title?: string;
-  content: ReactNode;
-  size?: ModalSize;
-}
-
-interface ModalContextType {
-  modalConfig: ModalConfig;
-  alert: (options: AlertOptions) => void;
-  confirm: (options: ConfirmOptions) => void;
-  custom: (options: CustomOptions) => void;
-  closeModal: () => void;
-}
+import {
+  ModalConfig,
+  ModalContextType,
+  ModalProviderProps
+} from '@/types/common/modal';
 
 const initialModalConfig: ModalConfig = {
   id: -1,
@@ -56,16 +18,16 @@ const initialModalConfig: ModalConfig = {
 
 const ModalContext = createContext<ModalContextType | undefined>(undefined);
 
-export const ModalProvider = ({ children }: { children: ReactNode }) => {
+export const ModalProvider = ({ children }: ModalProviderProps) => {
   const [modalConfig, setModalConfig] = useState<ModalConfig>(initialModalConfig);
 
   const openModal = (config: Omit<ModalConfig, 'isOpen'>) => {
     setModalConfig({ ...config, isOpen: true });
   };
 
-  const alert = ({ title, content, size = 'small', onConfirm }: AlertOptions) => {
+  const alert = ({ title, content, size = 'small', onConfirm }: ModalConfig) => {
     openModal({
-      id: -1,
+      id: initialModalConfig.id,
       type: 'alert',
       title,
       content,
@@ -80,9 +42,9 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     size = 'medium',
     onConfirm,
     onCancel
-  }: ConfirmOptions) => {
+  }: ModalConfig) => {
     openModal({
-      id: -1,
+      id: initialModalConfig.id,
       type: 'confirm',
       title,
       content,
@@ -92,9 +54,9 @@ export const ModalProvider = ({ children }: { children: ReactNode }) => {
     });
   };
 
-  const custom = ({ title, content, size = 'large' }: CustomOptions) => {
+  const custom = ({ title, content, size = 'large' }: ModalConfig) => {
     openModal({
-      id: -1,
+      id: initialModalConfig.id,
       type: 'custom',
       title,
       content,

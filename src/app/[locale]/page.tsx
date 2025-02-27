@@ -1,7 +1,5 @@
 
 "use client"
-
-import { ModalExample } from "@/components/ModalExample";
 export default function Home() {
   return (
     <div className="cn-center h-screen bg-fixed-inverse">
@@ -18,7 +16,6 @@ export default function Home() {
             <span className="font-regular">쉽게사용하기.232312</span>
           </div>
         </div>
-        <ModalExample />
       </div>
     </div>
   );

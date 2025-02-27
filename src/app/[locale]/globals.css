@@ -30,4 +30,8 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+  .fz-16{
+    font-size: 16px;
+    line-height: 24px;
+  }
 }
