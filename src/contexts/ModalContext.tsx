@@ -25,7 +25,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     setModalConfig({ ...config, isOpen: true });
   };
 
-  const alert = ({ title, content, size = 'small', onConfirm }: ModalConfig) => {
+  const AlertModal = ({ title, content, size = 'small', onConfirm }: ModalConfig) => {
     openModal({
       id: initialModalConfig.id,
       type: 'alert',
@@ -36,7 +36,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     });
   };
 
-  const confirm = ({
+  const ConfirmModal = ({
     title,
     content,
     size = 'medium',
@@ -54,7 +54,7 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     });
   };
 
-  const custom = ({ title, content, size = 'large' }: ModalConfig) => {
+  const CustomModal = ({ title, content, size = 'large' }: ModalConfig) => {
     openModal({
       id: initialModalConfig.id,
       type: 'custom',
@@ -64,13 +64,13 @@ export const ModalProvider = ({ children }: ModalProviderProps) => {
     });
   };
 
-  const closeModal = () => {
+  const CloseModal = () => {
     setModalConfig(initialModalConfig);
   };
 
   return (
     <ModalContext.Provider
-      value={{ modalConfig, alert, confirm, custom, closeModal }}
+      value={{ modalConfig, AlertModal, ConfirmModal, CustomModal, CloseModal }}
     >
       {children}
       <Modal />

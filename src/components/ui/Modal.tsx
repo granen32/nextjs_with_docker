@@ -2,7 +2,8 @@
 
 import React, { useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useModal, ModalSize } from '../../contexts/ModalContext';
+import { useModal } from '@/contexts/ModalContext';
+import { ModalSize } from '@/types/common/modal';
 
 const sizeClasses: Record<ModalSize, string> = {
   small: 'max-w-sm',
@@ -12,13 +13,13 @@ const sizeClasses: Record<ModalSize, string> = {
 
 export const Modal = () => {
   const { t } = useTranslation();
-  const { modalConfig, closeModal } = useModal();
+  const { modalConfig, CloseModal } = useModal();
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        closeModal();
+        CloseModal();
       }
     };
 
@@ -31,11 +32,11 @@ export const Modal = () => {
       document.removeEventListener('keydown', handleEscape);
       document.body.style.overflow = 'unset';
     };
-  }, [modalConfig.isOpen, closeModal]);
+  }, [modalConfig.isOpen, CloseModal]);
 
   const handleBackdropClick = (e: React.MouseEvent) => {
     if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      closeModal();
+      CloseModal();
     }
   };
 
@@ -46,7 +47,7 @@ export const Modal = () => {
       case 'alert':
         return (
           <button
-            onClick={modalConfig.onConfirm || closeModal}
+            onClick={modalConfig.onConfirm || CloseModal}
             className="rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-600"
           >
             {t('alert.confirm')}
@@ -56,7 +57,7 @@ export const Modal = () => {
         return (
           <div className="flex space-x-2">
             <button
-              onClick={modalConfig.onCancel || closeModal}
+              onClick={modalConfig.onCancel || CloseModal}
               className="rounded border border-gray-300 px-4 py-2 hover:bg-gray-100"
             >
               {t('confirm.cancel')}

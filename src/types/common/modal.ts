@@ -17,10 +17,10 @@ export interface ModalConfig {
 
 export interface ModalContextType {
   modalConfig: ModalConfig;
-  alert: (options: ModalConfig) => void;
-  confirm: (options: ModalConfig) => void;
-  custom: (options: ModalConfig) => void;
-  closeModal: () => void;
+  AlertModal: (options: ModalConfig) => void;
+  ConfirmModal: (options: ModalConfig) => void;
+  CustomModal: (options: ModalConfig) => void;
+  CloseModal: () => void;
 }
 
 export interface ModalProviderProps {

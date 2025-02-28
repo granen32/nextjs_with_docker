@@ -1,6 +1,18 @@
-
 "use client"
+
+import { useModal } from "@/contexts/ModalContext";
+
 export default function Home() {
+  const { ConfirmModal } = useModal();
+  const testOpenModal = () => {
+    ConfirmModal({
+      title: "확인",
+      content: "확인",
+      isOpen: true,
+      size: "medium",
+      type: "confirm"
+    });
+  };
   return (
     <div className="cn-center h-screen bg-fixed-inverse">
       <div className="cn-center gap-[300px] max-xl:flex-col">
@@ -14,6 +26,12 @@ export default function Home() {
             똑똑한 AI 휴먼.
             <br />
             <span className="font-regular">쉽게사용하기.232312</span>
+            <button
+              onClick={testOpenModal}
+              className="font-semibold text-fixed-white-fixed"
+            >
+              확인 모달 열기
+            </button>
           </div>
         </div>
       </div>
