@@ -1,5 +1,6 @@
 "use client"
 
+import { Badge } from "@/components/ui/Badge";
 import { useModal } from "@/contexts/ModalContext";
 
 export default function Home() {
@@ -32,6 +33,9 @@ export default function Home() {
             >
               확인 모달 열기
             </button>
+            <Badge variant="primary">
+              확인 모달 열기
+            </Badge>
           </div>
         </div>
       </div>
